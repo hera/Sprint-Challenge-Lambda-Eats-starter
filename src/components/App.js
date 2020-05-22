@@ -31,8 +31,21 @@ const App = () => {
         instructions: ''
     }
 
+    const defaultErrors = {
+        size: '',
+        sauce: '',
+        toppingPepperoni: '',
+        toppingSausage: '',
+        toppingBacon: '',
+        toppingOnions: '',
+        toppingBellPepper: '',
+        name: '',
+        instructions: ''
+    }
+
     let [orderData, setOrderData] = useState(defaultOrderData);
     let [disabled, setDisabled] = useState(true);
+    let [errors, setErrors] = useState(defaultErrors);
 
 
     function updateOrderData(key, value) {
@@ -55,17 +68,18 @@ const App = () => {
         yup.reach(orderFormSchema, element.name)
             .validate(element.value)
             .then(valid => {
-                setDisabled(false);
+                if (element.name === 'name') setDisabled(false);
+                setErrors({...errors, [element.name]: ''});
             })
             .catch(err => {
-                setDisabled(true);
+                if (element.name === 'name') setDisabled(true);
+                setErrors({...errors, [element.name]: err.errors[0]});
             });
 
     }
 
     function onSubmitHandler (event) {
         event.preventDefault();
-
     }
 
     return (
@@ -81,7 +95,7 @@ const App = () => {
 
                 <Route path="/order">
                     <Hero message="Order pizza"/>
-                    <OrderForm inputOnChangeHandler={inputOnChangeHandler} onSubmitHandler={onSubmitHandler} disabled={disabled} />
+                    <OrderForm inputOnChangeHandler={inputOnChangeHandler} onSubmitHandler={onSubmitHandler} disabled={disabled} errors={errors} />
                 </Route>
 
             </Switch>

@@ -1,9 +1,9 @@
 import React from "react";
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input, UncontrolledAlert } from 'reactstrap';
 import './OrderForm.css';
 
 export default function OrderForm (props) {
-    const {inputOnChangeHandler, onSubmitHandler, disabled} = props;
+    const {inputOnChangeHandler, onSubmitHandler, disabled, errors} = props;
 
     return (
         <Form>
@@ -11,6 +11,23 @@ export default function OrderForm (props) {
                 <div className="col">
                     <h2>Build your own pizza</h2>
                 </div>
+            </div>
+            
+            <div className="row">
+                {
+                    Object.keys(errors).map((item, key) => {
+                        if (errors[item]) {
+                            return (
+                                <div className="col">
+                                    <UncontrolledAlert color="danger" key={key}>
+                                        {errors[item]}
+                                    </UncontrolledAlert>
+                                </div>
+                            );
+                        }
+                        return null;
+                    })
+                }
             </div>
             
             <div className="row">
@@ -137,6 +154,12 @@ export default function OrderForm (props) {
             <div className="row">
                 <div className="col">
                     <Button color="danger" disabled={disabled} onClick={onSubmitHandler}>Add to order</Button>
+                </div>
+            </div>
+
+            <div className="row">
+                <div className="col">
+                    <pre></pre>
                 </div>
             </div>
         </Form>
