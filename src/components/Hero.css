@@ -1,0 +1,13 @@
+#hero {
+    background-image: url(../images/pizza.jpg);
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 60px;
+}
+
+#hero h2 {
+    padding: 2rem 4rem;
+    background-color: white;
+}

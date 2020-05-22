@@ -1,0 +1,10 @@
+header {
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+}
+
+header nav {
+    display: flex;
+    justify-content: flex-end;
+}
