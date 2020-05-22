@@ -6,6 +6,7 @@ import Header from './Header';
 import Hero from './Hero';
 import Products from './Products';
 import Footer from './Footer';
+import OrderForm from './OrderForm';
 
 const App = () => {
     return (
@@ -13,11 +14,17 @@ const App = () => {
             <Header />
 
             <Switch>
+
                 <Route exact path="/">
                     <Hero message="Your favorite food. Delivered while coding."/>
                     <Products />
                 </Route>
-                
+
+                <Route path="/order">
+                    <Hero message="Order pizza"/>
+                    <OrderForm />
+                </Route>
+
             </Switch>
 
             <Footer />
