@@ -1,8 +1,10 @@
 import React from "react";
-import { Button, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import './OrderForm.css';
 
-export default function OrderForm () {
+export default function OrderForm (props) {
+    const {inputOnChangeHandler, onSubmitHandler, disabled} = props;
+
     return (
         <Form>
             <div className="row">
@@ -16,7 +18,7 @@ export default function OrderForm () {
                     
                     <FormGroup>
                         <h4>Select size:</h4>
-                        <Input type="select" id="size" name="size">
+                        <Input type="select" id="size" name="size" onChange={inputOnChangeHandler}>
                             <option value="small">Small</option>
                             <option value="medium">Medium</option>
                             <option value="large">Large</option>
@@ -33,28 +35,28 @@ export default function OrderForm () {
                         <h4>Select sauce:</h4>
                         <FormGroup check>
                             <Label check>
-                                <Input type="radio" name="sauce" value="original" />{' '}
+                                <Input type="radio" name="sauce" value="original" onChange={inputOnChangeHandler} />{' '}
                                 Original red
                             </Label>
                         </FormGroup>
 
                         <FormGroup check>
                             <Label check>
-                                <Input type="radio" name="sauce" value="ranch" />{' '}
+                                <Input type="radio" name="sauce" value="ranch" onChange={inputOnChangeHandler} />{' '}
                                 Garlic Ranch
                             </Label>
                         </FormGroup>
 
                         <FormGroup check>
                             <Label check>
-                                <Input type="radio" name="sauce" value="bbq" />{' '}
+                                <Input type="radio" name="sauce" value="bbq" onChange={inputOnChangeHandler} />{' '}
                                 Barbeque sauce
                             </Label>
                         </FormGroup>
 
                         <FormGroup check>
                             <Label check>
-                                <Input type="radio" name="sauce" value="spinach" />{' '}
+                                <Input type="radio" name="sauce" value="spinach" onChange={inputOnChangeHandler} />{' '}
                                 Spinach Alfredo
                             </Label>
                             
@@ -62,7 +64,7 @@ export default function OrderForm () {
 
                         <FormGroup check>
                             <Label check>
-                                <Input type="radio" name="sauce" value="habanero" />{' '}
+                                <Input type="radio" name="sauce" value="habanero" onChange={inputOnChangeHandler} />{' '}
                                 Habanero
                             </Label>
                             
@@ -75,35 +77,35 @@ export default function OrderForm () {
                         <h4>Add toppings:</h4>
                         <FormGroup check>
                             <Label check>
-                            <Input type="checkbox" name="toppingPepperoni" id="toppingPepperoni" />{' '}
+                            <Input type="checkbox" name="toppingPepperoni" value="yes" id="toppingPepperoni" onChange={inputOnChangeHandler} />{' '}
                                 Pepperoni  
                             </Label>
                         </FormGroup>
                         
                         <FormGroup check>
                             <Label check>
-                            <Input type="checkbox" name="toppingSausage" id="toppingSausage" />{' '}
+                            <Input type="checkbox" name="toppingSausage" value="yes" id="toppingSausage" onChange={inputOnChangeHandler} />{' '}
                                 Sausage  
                             </Label>
                         </FormGroup>
                         
                         <FormGroup check>
                             <Label check>
-                            <Input type="checkbox" name="toppingBacon" id="toppingBacon" />{' '}
+                            <Input type="checkbox" name="toppingBacon" value="yes" id="toppingBacon" onChange={inputOnChangeHandler} />{' '}
                                 Bacon  
                             </Label>
                         </FormGroup>
                         
                         <FormGroup check>
                             <Label check>
-                            <Input type="checkbox" name="toppingOnions" id="toppingOnions" />{' '}
+                            <Input type="checkbox" name="toppingOnions" value="yes" id="toppingOnions" onChange={inputOnChangeHandler} />{' '}
                                 Onions  
                             </Label>
                         </FormGroup>
                         
                         <FormGroup check>
                             <Label check>
-                            <Input type="checkbox" name="toppingBellPepper" id="toppingBellPepper" />{' '}
+                            <Input type="checkbox" name="toppingBellPepper" value="yes" id="toppingBellPepper" onChange={inputOnChangeHandler} />{' '}
                                 Bell pepper  
                             </Label>
                         </FormGroup>
@@ -115,16 +117,26 @@ export default function OrderForm () {
             <div className="row">
 
                 <div className="col-lg-6">
+                    <h4>Your name: (required)</h4>
+                    <FormGroup>
+                        <Input type="text" name="name" id="name" onChange={inputOnChangeHandler} />
+                    </FormGroup>
+                </div>
+            </div>
+
+            <div className="row">
+
+                <div className="col-lg-6">
                     <h4>Special Instructions:</h4>
                     <FormGroup>
-                        <Input type="textarea" name="text" id="instructions" placeholder="Anything else you'd like to add?" />
+                        <Input type="textarea" name="instructions" id="instructions" placeholder="Anything else you'd like to add?" onChange={inputOnChangeHandler} />
                     </FormGroup>
                 </div>
             </div>
 
             <div className="row">
                 <div className="col">
-                    <Button color="danger">Add to order</Button>
+                    <Button color="danger" disabled={disabled} onClick={onSubmitHandler}>Add to order</Button>
                 </div>
             </div>
         </Form>
