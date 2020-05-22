@@ -153,7 +153,7 @@ export default function OrderForm (props) {
 
             <div className="row">
                 <div className="col">
-                    <Button color="danger" disabled={disabled} onClick={onSubmitHandler}>Add to order</Button>
+                    <Button color="danger" id="submit" disabled={disabled} onClick={onSubmitHandler}>Add to order</Button>
                 </div>
             </div>
 
