@@ -3,7 +3,7 @@ import { Button, Form, FormGroup, Label, Input, UncontrolledAlert } from 'reacts
 import './OrderForm.css';
 
 export default function OrderForm (props) {
-    const {inputOnChangeHandler, onSubmitHandler, disabled, errors} = props;
+    const {inputOnChangeHandler, onSubmitHandler, disabled, errors, responseData} = props;
 
     return (
         <Form>
@@ -159,7 +159,7 @@ export default function OrderForm (props) {
 
             <div className="row">
                 <div className="col">
-                    <pre></pre>
+                    <pre>{ JSON.stringify(responseData) }</pre>
                 </div>
             </div>
         </Form>

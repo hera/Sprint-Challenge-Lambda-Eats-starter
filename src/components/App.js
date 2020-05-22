@@ -43,9 +43,12 @@ const App = () => {
         instructions: ''
     }
 
+    const SERVER_URL = 'https://reqres.in/api/users';
+
     let [orderData, setOrderData] = useState(defaultOrderData);
     let [disabled, setDisabled] = useState(true);
     let [errors, setErrors] = useState(defaultErrors);
+    let [responseData, setResponseData] = useState();
 
 
     function updateOrderData(key, value) {
@@ -80,6 +83,14 @@ const App = () => {
 
     function onSubmitHandler (event) {
         event.preventDefault();
+
+        axios.post(SERVER_URL, orderData)
+            .then((response) => {
+                setResponseData(response.data);
+            })
+            .catch((error) => {
+                console.log("Axios error occured");
+            });
     }
 
     return (
@@ -95,7 +106,7 @@ const App = () => {
 
                 <Route path="/order">
                     <Hero message="Order pizza"/>
-                    <OrderForm inputOnChangeHandler={inputOnChangeHandler} onSubmitHandler={onSubmitHandler} disabled={disabled} errors={errors} />
+                    <OrderForm inputOnChangeHandler={inputOnChangeHandler} onSubmitHandler={onSubmitHandler} disabled={disabled} errors={errors} responseData={responseData} />
                 </Route>
 
             </Switch>
