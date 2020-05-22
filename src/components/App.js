@@ -1,4 +1,5 @@
 import React from "react";
+import { Switch, Route, Link } from "react-router-dom";
 import './App.css';
 
 import Header from './Header';
@@ -10,8 +11,15 @@ const App = () => {
     return (
         <div className="container">
             <Header />
-            <Hero message="Your favorite food. Delivered while coding."/>
-            <Products />
+
+            <Switch>
+                <Route exact path="/">
+                    <Hero message="Your favorite food. Delivered while coding."/>
+                    <Products />
+                </Route>
+                
+            </Switch>
+
             <Footer />
         </div>
     );

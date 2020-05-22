@@ -1,6 +1,8 @@
 import React from "react";
 import './Header.css';
 
+import { Link } from 'react-router-dom';
+
 export default function Header () {
     return (
         <header className="row">
@@ -9,8 +11,8 @@ export default function Header () {
             </div>
             <div className="col">
                 <nav>
-                    <a href="#" className="btn">Home</a>
-                    <a href="#" className="btn btn-danger">Order pizza</a>
+                    <Link to="/" className="btn">Home</Link>
+                    <Link to="/order" className="btn btn-danger">Order pizza</Link>
                 </nav>
             </div>
         </header>
